@@ -3,10 +3,10 @@ const ObjectID = require("mongoose").Types.ObjectId;
 
 module.exports.create= async (req, res) => {
     console.log(req.body);
-    const {user,main} = req.body
+    const {main} = req.body
 
     try {
-        const message = await PaimentModel.create({user,main});
+        const message = await MessageModel.create({main});
         res.status(201).json({ message: message._id });
     }
     catch(err) {
@@ -38,7 +38,7 @@ module.exports.updateMessage = async (req, res) => {
       { _id: req.params.id },
       {
         $set: {
-          user: req.body.user,
+          //user: req.body.user,
           main: req.body.main
         }
       },

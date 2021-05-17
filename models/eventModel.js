@@ -28,8 +28,13 @@ const eventSchema  = new mongoose.Schema(
             type: String,
             require: true
         },
+        description: {
+            type: String,
+            require: true
+        },
         cat: {
-            type: String, //ref to catalogue
+            type: mongoose.Schema.Types.ObjectId,//ref to catalogue
+            ref: 'categorie',
             require: true
         }
     },

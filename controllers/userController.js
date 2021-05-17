@@ -35,7 +35,6 @@ module.exports.updateUser = async (req, res) => {
           phone: req.body.phone,
           email: req.body.email,
           password: req.body.password,
-          picture: req.body.picture,
           institue: req.body.nstitue,
           numC: req.body.numC
         }

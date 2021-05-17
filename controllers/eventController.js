@@ -1,17 +1,44 @@
 const EventModel = require('../models/eventModel');
 const ObjectID = require("mongoose").Types.ObjectId;
 
-module.exports.create= async (req, res) => {
+
+/*module.exports.create= async (req, res) => {
     console.log(req.body);
-    const {title, date, time, place, picture} = req.body
+    const {title, date, time, place, description, picture, cat} = req.body
 
     try {
-        const event = await EventModel.create({title, date, time, place, picture});
+        const event = await EventModel.create({title, date, time, place, picture, description, cat});
         res.status(201).json({ event: event._id});
     }
     catch(err) {
         res.status(400).send({ err })
     }
+
+}
+*/
+module.exports.create = (req, res, next) => {
+  let event = new EventModel({
+    title: req.body.title,
+    date: req.body.date,
+    time: req.body.time,
+    place: req.body.place,
+    description: req.body.description, 
+    cat: req.body.cat
+  })
+  if(req.file){
+    event.picture = req.file.path
+  }
+  event.save()
+  .then(response => {
+    res.json({
+      message: "Event added"
+    })
+  })
+  .catch(error => {
+    res.json({
+      message: 'An error'
+    })
+  })
 }
 
 module.exports.getAllEvents = async (req, res) => {
@@ -42,7 +69,9 @@ module.exports.updateEvent = async (req, res) => {
           date: req.body.date,
           time: req.body.time,
           place: req.body.place,
-          picture: req.body.picture
+          picture: req.body.picture,
+          description: req.body.description,
+          cat: req.body.cat
         }
       },
       { new: true, upsert: true, setDefaultsOnInsert: true },

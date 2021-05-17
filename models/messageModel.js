@@ -4,10 +4,6 @@ var ObjectId = mongoose.Schema.ObjectId;
 
 const messSchema = new mongoose.Schema(
     {
-        user: {
-            type: ObjectId,
-            required: true
-        },
         main: {
             type: String,
             required: true,

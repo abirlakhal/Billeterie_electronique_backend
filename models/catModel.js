@@ -9,13 +9,7 @@ const catSchema = new mongoose.Schema(
             maxLength: 55,
             unique: true,
             trim: true
-        },
-        events: {
-            Type: [{
-                event:String
-            }]
         }
-        
     },
     {
         timestamps: true,

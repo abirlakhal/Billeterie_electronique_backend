@@ -5,6 +5,7 @@ const bcrypt = require("bcryptjs");
 const { signUpErrors, signInErrors } = require('../utils/errors.utils');
 const passport = require('passport');
 const _ = require('lodash');
+const { models } = require('mongoose');
 let tokenList={}
 
 //inscription
@@ -56,7 +57,7 @@ module.exports.signIn = function (req, res) {
                     }  
                 };
 
-                tokenList [ refresh_token] = user_info;
+                tokenList [refresh_token] = user_info;
                 return res.status(200).json({
                     status: 200,
                     state: "success",
@@ -107,5 +108,6 @@ module.exports.authenticate = (req, res, next) => {
         else return res.status(404).json(info);
     })(req, res);
 }
+
 
 
