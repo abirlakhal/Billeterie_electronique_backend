@@ -56,6 +56,14 @@ module.exports.getEvent = (req, res) => {
   }).select();
 };
 
+module.exports.getEventByCat = async (req, res) => {
+  
+  var query = {cat: req.params.id };
+  const events = await EventModel.find(query);
+    res.status(200).json(events);
+  
+};
+
 module.exports.updateEvent = async (req, res) => {
   if (!ObjectID.isValid(req.params.id))
     return res.status(400).send("ID unknown : " + req.params.id);

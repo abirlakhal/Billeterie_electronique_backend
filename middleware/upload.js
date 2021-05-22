@@ -15,8 +15,10 @@ var upload = multer ({
     storage: storage,
     fileFilter: function(req, file, callback) {
         if( 
+            file.mimetype == "image/jpg" ||
+            file.mimetype == "image/jpe" ||
             file.mimetype == "image/png" ||
-            file.mimetype == "image/jpe"
+            file.mimetype == "image/jfif"
         ){
             callback(null,true)
         }else{

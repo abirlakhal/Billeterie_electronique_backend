@@ -7,6 +7,6 @@ router.get('/', eventCont.getAllEvents);
 router.get('/:id', eventCont.getEvent);
 router.put("/:id", eventCont.updateEvent);
 router.delete("/:id", eventCont.deleteEvent);
-
+router.get("/bycat/:id", eventCont.getEventByCat);
 
 module.exports = router;
