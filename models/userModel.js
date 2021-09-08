@@ -8,16 +8,6 @@ const userSchema = new mongoose.Schema(
         pseudo: {
             type: String,
             required: true,
-            minLength: 3,
-            maxLength: 55,
-            unique: true,
-            trim: true
-        },
-        phone: {
-            type: String,
-            minLength: 3,
-            maxLength: 55,
-            unique: true,
             trim: true
         },
         email: {
@@ -28,6 +18,10 @@ const userSchema = new mongoose.Schema(
             unique: true,
             trim: true
         },
+        role: {
+            type: String,
+            trim: true,
+        },
         password: {
             type: String,
             required: true,
@@ -35,9 +29,9 @@ const userSchema = new mongoose.Schema(
             minLength: 6,
             trim: true
         },
-        picture:{
+        phone: {
             type: String,
-            default:"./uploads/profil/random.png"
+            trim: true
         },
         institute:{
             type: String,
@@ -52,11 +46,12 @@ const userSchema = new mongoose.Schema(
         timestamps: true,
     }
 );
+
 userSchema.pre("save", async function(next) {
     const salt = await bcrypt.genSalt();
     this.password = await bcrypt.hash(this.password, salt);
     next();
-  });
+});
 
 // Methods
 userSchema.methods.verifyPassword = function (password) {

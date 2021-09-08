@@ -9,7 +9,9 @@ router.post('/login', authCont.signIn);
 router.get('/logout', authCont.logout);
 //crud
 router.get('/', userCont.getAllUsers);
-//router.get('/:id', checkUser.checkUser, userCont.getUser);
+router.get('/org', userCont.getOrganizer);
+router.get('/cli', userCont.getClient);
+router.get('/user/:id', userCont.getUser);
 router.put("/:id",  userCont.updateUser);
 router.delete("/:id", userCont.deleteUser);
 router.get('/userProfil', jwtHelper.verifyJwtToken ,userCont.userProfile);

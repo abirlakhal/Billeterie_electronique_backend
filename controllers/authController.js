@@ -53,7 +53,8 @@ module.exports.signIn = function (req, res) {
                     refresh_token: refresh_token,
                     user: {
                         pseudo: User.pseudo,
-                        email: User.email
+                        email: User.email,
+                        id: User.id
                     }  
                 };
 
@@ -64,7 +65,7 @@ module.exports.signIn = function (req, res) {
                     message: "log in succefully",
                     token: user_info.token,
                     refresh_token: user_info.refresh_token,
-                    user: user_info.user  
+                    user: user_info.user
                 });
 
             }else{

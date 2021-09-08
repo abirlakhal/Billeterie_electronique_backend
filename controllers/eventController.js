@@ -22,8 +22,9 @@ module.exports.create = (req, res, next) => {
     date: req.body.date,
     time: req.body.time,
     place: req.body.place,
-    description: req.body.description, 
-    cat: req.body.cat
+    description: req.body.description,
+    price: req.body.price, 
+    cat: req.body.cat,
   })
   if(req.file){
     event.picture = req.file.path
